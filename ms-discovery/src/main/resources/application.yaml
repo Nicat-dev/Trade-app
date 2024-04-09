@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ms-discovery
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+server:
+  port: 8761
+  shutdown: graceful

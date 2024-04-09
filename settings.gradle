@@ -1,0 +1,5 @@
+rootProject.name = 'payday-trade'
+include 'ms-discovery'
+include 'ms-auth'
+include 'ms-account'
+

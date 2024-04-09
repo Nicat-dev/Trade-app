@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version "$springBootVersion" apply false
+    id 'io.spring.dependency-management' version "$springDependencyManagerVersion" apply false
+}
+
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: 'java'
+
+    dependencies {
+        implementation "io.jsonwebtoken:jjwt-api:${jwt_version}"
+        implementation "io.jsonwebtoken:jjwt-impl:${jwt_version}"
+        implementation "io.jsonwebtoken:jjwt-jackson:${jwt_version}"
+        implementation platform("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+    }
+}
+
+subprojects {
+    sourceCompatibility = jdk_version
+    targetCompatibility = jdk_version
+
+    tasks.withType(Test).tap {
+        configureEach {
+            maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+        }
+    }
+}
+

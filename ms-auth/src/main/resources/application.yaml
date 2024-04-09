@@ -1,0 +1,81 @@
+spring:
+  application:
+    name: ms-auth
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ms_auth
+    username: postgres
+    password: postgres
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: false
+      connection-timeout: 20000
+      maximum-pool-size: 20
+      minimum-idle: 1
+      pool-name: HikariCP
+      max-lifetime: 600000
+      idle-timeout: 300000
+      connection-test-query: SELECT 1
+      initialization-fail-timeout: 1
+
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+          batch_size: 15
+        order_updates: true
+    hibernate:
+      ddl-auto: validate
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USER:milaldemo@gmail.com}
+    password: ${MAIL_APP_PASS:vmsj ckkz ikdg vrbm}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+
+server:
+  port: 8080
+  shutdown: graceful
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    org.hibernate: INFO
+    org.apache.http: INFO
+    org.apache: INFO
+
+
+
+security:
+  secret: TmljYXQgZ290ZHVUbWxqWVhRZ1oyOTBaSFU9VG1sallYUWdaMjkwWkhWVWJXeHFXVmhSWjFveU9UQmFTRlU5
+  access-token-validity-minutes: 60
+  refresh-token-validity-minutes: 1440
