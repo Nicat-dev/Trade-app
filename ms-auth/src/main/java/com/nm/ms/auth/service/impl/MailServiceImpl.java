@@ -27,7 +27,7 @@ public class MailServiceImpl implements MailService {
         final var helper = new MimeMessageHelper(mailSender.createMimeMessage());
 
         try {
-            helper.setFrom(from, "Göt Nicat!");
+            helper.setFrom(from, "Nicat");
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(body, isHtml);
